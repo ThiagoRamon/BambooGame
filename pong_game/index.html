@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script type="module" src="src/Game.js" ></script>
+<script type="module">
+    import {Game} from "./src/Game.js"
+    import {CanvasSettings, FrameSettings, Settings}from "../io/bambooGame/config/Settings.js";
+
+    const frameSettings  = new FrameSettings({frameRate:1});
+    const canvasSettings = new CanvasSettings({});
+    const settings = new Settings({frameSettings,canvasSettings})
+
+    const pong_game = new Game({settings,running:true});
+    pong_game.run();
+</script>
+</body>
+</html>

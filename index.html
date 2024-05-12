@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color:#c1c2c3;
+        }
+    </style>
+</head>
+<body>
+    <main>
+
+    </main>
+<script type="module" src="io/bambooGame/core/BambooGame.js" ></script>
+<script type="module">
+
+    import {CanvasSettings,FrameSettings, Settings}from "./io/bambooGame/config/Settings.js";
+    import {BambooGame}from "./io/bambooGame/core/BambooGame.js";
+    import {Scene}from "./io/bambooGame/core/Scene.js";
+
+   /* class Ball{
+            constructor(context , x,y, radius, color){
+                this.context = context;
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color  = color;
+                this.speedX = 5;
+                this.speedY = 5;
+                this.isAlive = true;
+            }
+         draw(){
+                this.context.beginPath();
+                this.context.arc(this.x,this.y,this.radius, 0, Math.PI*2);
+                this.context.fillStyle = this.color;
+                this.context.fill();
+                this.context.closePath();
+            }
+             update(){
+                this.x += this.speedX;
+                this.y += this.speedY;
+            }
+        }
+*/
+    const frameSettings  = new FrameSettings({frameRate:1});
+    const canvasSettings = new CanvasSettings({});
+    const settings = new Settings({frameSettings,canvasSettings})
+    const bambooGame = new BambooGame({settings,running:true});
+
+    bambooGame.setCurrentScene(new Scene({parent:bambooGame}))
+    //bambooGame.currentScene.entity.push(new Ball(bambooGame.currentScene.context, 200, 200, 10, "#ffff"));
+    bambooGame.run();
+
+</script>
+</body>
+</html>
