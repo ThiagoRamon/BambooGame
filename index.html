@@ -21,43 +21,69 @@
     <main>
 
     </main>
-<script type="module" src="io/bambooGame/core/BambooGame.js" ></script>
+<script type="module" src="io/bambooGame/2d/core/BambooGame.js" ></script>
 <script type="module">
 
-    import {CanvasSettings,FrameSettings, Settings}from "./io/bambooGame/config/Settings.js";
-    import {BambooGame}from "./io/bambooGame/core/BambooGame.js";
-    import {Scene}from "./io/bambooGame/core/Scene.js";
+    import {CanvasSettings,FrameSettings, Settings}from "./io/bambooGame/2d/config/Settings.js";
+    import {BambooGame} from "./io/bambooGame/2d/core/BambooGame.js";
+    import {Scene}      from "./io/bambooGame/2d/core/Scene.js";
+    import {Rectangle}  from "./io/bambooGame/2d/gui/geom/Rectangle.js";
+    import {Circle}     from "./io/bambooGame/2d/gui/geom/Circle.js";
+    import {Vector3D}     from "./io/bambooGame/2d/component/vector3D.js";
 
-   /* class Ball{
-            constructor(context , x,y, radius, color){
-                this.context = context;
-                this.x = x;
-                this.y = y;
-                this.radius = radius;
-                this.color  = color;
-                this.speedX = 5;
-                this.speedY = 5;
-                this.isAlive = true;
+
+
+
+    class Ball extends Circle{
+        direction = {x:-1,y:-1};
+        x = 0;
+        y = 0;
+        speed  = {x:5,y:5}
+       // constructor({parent = parent, angle=null, color="#fff", fill={style:"#fff",isAlive:true}, stroke ={style:"#000",isAlive:true}}){
+         //   super({parent:parent})
+         //   this.
+        //}
+        update(){
+
+            this.x = this.getPosition().x + (this.speed.x*this.direction.x);
+            this.y = this.getPosition().y + (this.speed.y*this.direction.y);
+
+            let canvasWidth  = this.context.canvas.width;
+            let canvasHeight = this.context.canvas.height;
+            let position     = this.getPosition();
+            let angle        = this.getAngle();
+            
+            if(this.x-angle.radius <= 0 || this.x+angle.radius>=canvasWidth){
+                this.direction.x *= -1;
+                
             }
-         draw(){
-                this.context.beginPath();
-                this.context.arc(this.x,this.y,this.radius, 0, Math.PI*2);
-                this.context.fillStyle = this.color;
-                this.context.fill();
-                this.context.closePath();
+            
+            if(this.y-angle.radius <= 0 || this.y+angle.radius>=canvasHeight){
+                this.direction.y *= -1;
             }
-             update(){
-                this.x += this.speedX;
-                this.y += this.speedY;
-            }
+            
+
+            this.setPosition(this.x,this.y)
+
+
+
         }
-*/
-    const frameSettings  = new FrameSettings({frameRate:1});
+
+
+    }
+
+ 
+    const frameSettings  = new FrameSettings({frameRate:64});
     const canvasSettings = new CanvasSettings({});
     const settings = new Settings({frameSettings,canvasSettings})
     const bambooGame = new BambooGame({settings,running:true});
 
     bambooGame.setCurrentScene(new Scene({parent:bambooGame}))
+
+    const player = new Ball({parent:bambooGame.currentScene});
+    //player.componentManager.getComponent("transform").position = new Vector3D().getRandomVector(20,200)
+    console.log(player.componentManager.getComponent("transform").setPosition(new Vector3D({}).getRandomVector(20,200)))
+    bambooGame.currentScene.entity.push(player);
     //bambooGame.currentScene.entity.push(new Ball(bambooGame.currentScene.context, 200, 200, 10, "#ffff"));
     bambooGame.run();
 
