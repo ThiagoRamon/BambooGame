@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BAMBOO GAME</title>
+</head>
+<body>
+    <script type="module">
+        import {BambooEng} from "./io/bamboo_game/2d/core/BambooEng.js";
+        import {View} from "./io/bamboo_game/2d/core/View.js";
+        const pong_game = new BambooEng({});
+        const mainView = new View({node:pong_game});
+        pong_game.viewController
+        pong_game.start();
+    </script>
+</body>
+</html>
