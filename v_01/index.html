@@ -2,15 +2,30 @@
 <html>
 <head>
     <title>BAMBOO GAME</title>
+    <style type="text/css">
+    	*{
+    		margin: 0;
+    		padding: 0;
+    		box-sizing: border-box;
+    	}
+    	body{
+    		overflow: hidden;
+    	}
+    </style>
 </head>
 <body>
     <script type="module">
         import {BambooEng} from "./io/bamboo_game/2d/core/BambooEng.js";
         import {View} from "./io/bamboo_game/2d/core/View.js";
+        //import {Rectangle} from "./io/bamboo_game/2d/g/geom/Rectangle.js";
         const pong_game = new BambooEng({});
-        const mainView = new View({node:pong_game});
-        pong_game.viewController
+        const mainView  = new View({node:pong_game});
+        //const player    = new Rectangle({node:mainView});
+       // mainView.addObject(player)
+        pong_game.viewController.addView("main", mainView);
+        pong_game.viewController.setCurrentView("main");
         pong_game.start();
+
     </script>
 </body>
 </html>

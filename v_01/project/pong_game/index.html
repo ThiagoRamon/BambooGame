@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BAMBOO GAME</title>
+    <style type="text/css">
+    	*{
+    		margin: 0;
+    		padding: 0;
+    		box-sizing: border-box;
+    	}
+    	body{
+    		overflow: hidden;
+    	}
+    </style>
+</head>
+<body>
+    <script type="module">
+        import {BambooEng} from "../../io/bamboo_game/2d/core/BambooEng.js";
+        import {Main} from "./scene/Main.js";
+        import {Paddle} from "./game_objects/Paddle.js";
+        import {PaddleAI} from "./game_objects/PaddleAI.js";
+        import {Ball} from "./game_objects/Ball.js";
+        //import {Rectangle} from "./io/bamboo_game/2d/g/geom/Rectangle.js";
+
+        const pong_game = new BambooEng({});
+        const mainScene = new Main({node:pong_game});
+        //console.log(mainScene.settings.dimension);
+        const player    = new Paddle({
+        								node:mainScene,
+        							});
+        const AI        = new PaddleAI({
+        								node:mainScene,
+        							});
+        const ball      = new Ball({
+                                        node:mainScene,
+                                    });
+        mainScene.addObject(player)
+        mainScene.addObject(AI)
+        mainScene.addObject(ball)
+        pong_game.viewController.addView("main", mainScene);
+        pong_game.viewController.setCurrentView("main");
+        pong_game.start();
+
+    </script>
+</body>
+</html>

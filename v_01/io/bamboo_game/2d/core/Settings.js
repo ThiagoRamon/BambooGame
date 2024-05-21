@@ -1,12 +1,12 @@
 export class CanvasSettings{
-    constructor({canvas_id="canvas_default", dimention={width:400, height:"400"}, style={background:"lightBlue"}}){
+    constructor({canvas_id="canvas_default", dimension={width:400, height:400}, style={background:"lightBlue"}}){
         this.canvas_id = canvas_id;
-        this.dimention = dimention;
+        this.dimension = dimension;
         this.style = style;
     }
 }
 export class FrameSettings{
-    constructor({frameRate=32, lastFrameTime=0, frameInterval=0, currentTime=0, deltaTime=0}){
+    constructor({frameRate=64, lastFrameTime=0, frameInterval=0, currentTime=0, deltaTime=0}){
 
         this.frameRate     = frameRate;
         this.lastFrameTime = lastFrameTime;
